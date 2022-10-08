@@ -1,0 +1,28 @@
+Description: Use DH compilation flags
+Author: Samuel Henrique <samueloph@debian.org>
+Index: hoichess/src/Makefile
+===================================================================
+--- hoichess.orig/src/Makefile
++++ hoichess/src/Makefile
+@@ -5,8 +5,8 @@ CPP = $(CXX) -E
+ INSTALL = /usr/bin/install
+ 
+ LIBPATH =
+-CXXFLAGS = -W -Wall -O3 -fno-exceptions $(ADD_CXXFLAGS)
+-LDFLAGS  = 
++CXXFLAGS += -fno-exceptions $(ADD_CXXFLAGS)
++LDFLAGS  +=
+ 
+ ###############################################################################
+ 
+Index: hoichess/book/Makefile
+===================================================================
+--- hoichess.orig/book/Makefile
++++ hoichess/book/Makefile
+@@ -45,5 +45,5 @@ $(BOOKS): %.dat: %.pgn $(HOST_HOICHESS)
+ 
+ $(HOST_HOICHESS):
+ 	@# BUILDDIR is relative to src/!
+-	$(MAKE) -C ../src CXX="$(HOST_CXX)" CXXFLAGS="$(HOST_CXXFLAGS)" BUILDDIR="$(dir $@)" all-hoichess
++	$(MAKE) -C ../src CXX="$(HOST_CXX)" CXXFLAGS+="$(HOST_CXXFLAGS)" BUILDDIR="$(dir $@)" all-hoichess
+ 

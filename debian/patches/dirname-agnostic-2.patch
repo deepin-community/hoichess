@@ -1,0 +1,18 @@
+Description: Use the debian package version instead of the upstream version
+ Follow-up to dirname-agnostic-1.patch.
+Author: Daniel Shahaf <danielsh@apache.org>
+Bug: https://bugs.debian.org/-1
+Forwarded: not-needed
+Last-Update: 2018-05-24
+
+--- a/src/build/print_version_str
++++ b/src/build/print_version_str
+@@ -18,7 +18,7 @@
+ 
+ 	version_str="$branch-$rev-svn"
+ else
+-	version_str=`awk '/^Version/ {print $2; exit}' "$basedir/ChangeLog"`
++	version_str="`cd "${basedir}" && dpkg-parsechangelog -SVersion`""-debian"
+ fi
+ 
+ echo "$version_str"

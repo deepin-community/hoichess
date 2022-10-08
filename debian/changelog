@@ -1,0 +1,254 @@
+hoichess (0.22.0-2) unstable; urgency=medium
+
+  [ Helmut Grohne ]
+  * Fix FTCBFS: (closes: #930460)
+    + Annotate Build-Depends: perl with :native.
+    + Also pass CXX to make install.
+
+  [ Ondřej Nový ]
+  * d/copyright: Use https protocol in Format field
+  * d/changelog: Remove trailing whitespaces
+
+  [ Samuel Henrique ]
+  * Bump DH to 13
+  * Bump Standards-Version to 4.5.0
+  * Add d/salsa-ci.yml and d/gbp.conf
+  * d/rules: Remove '-Wl,--as-needed' linker flag default on bullseye
+  * d/control: Add 'Rules-Requires-Root: no'
+
+ -- Samuel Henrique <samueloph@debian.org>  Sat, 04 Jul 2020 14:11:56 +0100
+
+hoichess (0.22.0-1) unstable; urgency=medium
+
+  * New upstream version 0.22.0
+  * Bump DH level to 11
+  * Bump Standards-Version to 4.1.4.1
+  * Change email address of Samuel to d.o
+  * Update Vcs-* field to point to salsa
+  * d/pachtes: dirname-agnostic: 1 is applied upstream and 2 got refreshed
+  * d/copyright: update debian/* entry
+
+ -- Samuel Henrique <samueloph@debian.org>  Thu, 24 May 2018 18:34:56 -0300
+
+hoichess (0.21.0-2) unstable; urgency=medium
+
+  * d/p/agnostic*.patch: new patch to introduce reproducible builds, thanks to
+    Daniel Shahaf <danielsh@apache.org> for creating the patch, Chris Lamb
+    <lamby@debian.org> for reporting and helping with another patch and
+    hoichess's upstream Holger Ruckdeschel <holger@hoicher.de> for the help
+    (closes: #847768).
+
+ -- Samuel Henrique <samueloph@debian.org>  Sun, 25 Jun 2017 20:45:17 -0300
+
+hoichess (0.21.0-1) unstable; urgency=medium
+
+  * New upstream version 0.21.0.
+  * Bump Standards-Version to 4.0.0.
+  * d/patches:
+    - docs.patch: refresh patch.
+    - flags.patch: update patch.
+    - sparc32 and reproducible-build: no more needed/applied upstream.
+
+ -- Samuel Henrique <samueloph@debian.org>  Sat, 17 Jun 2017 21:01:28 -0300
+
+hoichess (0.19.0-5) unstable; urgency=medium
+
+  * Bump DH level to 10.
+  * debian/control: Build-Depends on m4, detected on bpo FTBFS and confirmed
+    looking at Makefile.
+
+ -- Samuel Henrique <samueloph@debian.org>  Mon, 26 Sep 2016 11:17:09 -0300
+
+hoichess (0.19.0-4) unstable; urgency=medium
+
+  * Use opening book from pgn-extract, thanks to Holger Ruckdeschel
+    (closes: #401164).
+  * debian/clean: Create file and add book/hoichess-book.pgn.
+  * debian/control: Build-Depends on pgn-extract.
+  * debian/patches:
+    - flags.patch: Refresh patch to make book/Makefile use DH flags.
+    - sparc32.patch: New patch to remove sparc32 files that causes FTBFS.
+  * debian/rules: override_dh_auto_build: Copy opening book from pgn-extract.
+
+ -- Samuel Henrique <samueloph@debian.org>  Tue, 13 Sep 2016 20:37:19 -0300
+
+hoichess (0.19.0-3) unstable; urgency=medium
+
+  * New maintainer. Thanks to all previous people that have worked on this
+    package, special mention to Joao Eriberto Mota Filho <eriberto@debian.org>,
+    whom sponsored me and dedicated a lot of time and effort into reviewing my
+    changes (closes: #835307).
+  * debian/copyright: Switch to DEP-5 format.
+  * debian/patches:
+    - reproducible-build.patch: New patch, sort source files for deterministic
+      linking order, thanks to Reiner Herrmann (closes: #826982).
+
+ -- Samuel Henrique <samueloph@debian.org>  Fri, 09 Sep 2016 11:57:30 -0300
+
+hoichess (0.19.0-2) unstable; urgency=medium
+
+  * QA upload
+  * Suggest instead of Recommend xboard | scid. Closes: #820461
+  * Suggest gnome-chess as an alternative too
+  * Import to collab-maint and set Vcs fields
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 07 Sep 2016 14:59:21 -0400
+
+hoichess (0.19.0-1) unstable; urgency=medium
+
+  * QA upload.
+  * New upstream release (closes: #786449).
+  * Ack for NMU. Thanks a lot to Matthias Klose for the fix to build failure
+    with GCC 4.7. (Closes: #667202)
+  * Set Debian QA Group as maintainer (see #835307).
+  * Bump DH to 9.
+  * Bump Standards-Version to 3.9.8.
+  * debian/control:
+    - Add Homepage.
+  * debian/dirs: Remove file, upstream already creates needed dirs.
+  * debian/patches:
+    - The following patches were removed because they were applied upstream or
+      are no more needed.
+      ~ 01-Makefile.
+      ~ 01-ld-as-needed.
+      ~ 02-Makefile.local.
+      ~ 03-config.h.
+      ~ 04-debug_printconfig.h.
+      ~ 05-ftbfs-gcc-4.7.
+    - New patches:
+      ~ docs.patch: Let DH ship changelog and license files and drop html
+        manual.
+      ~ flags.patch: Use DH compilation flags.
+  * debian/rules:
+    - Export DEB_BUILD_MAINT_OPTIONS = hardening=+all, in order to enable
+      hardening.
+    - Export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed, in order to disable
+      useless dependencies.
+    - Remove comments and trailing whitespace.
+  * debian/watch: Add proper url and set to version 4.
+  * wrap-and-sort -a.
+
+ -- Samuel Henrique <samueloph@debian.org>  Sun, 04 Sep 2016 17:03:11 -0300
+
+hoichess (0.10.3-6.1) unstable; urgency=low
+
+  [ Matthias Klose ]
+  * Non maintainer upload.
+  * Fix build failure with GCC 4.7. Closes: #667202.
+
+ -- Jonathan Wiltshire <jmw@debian.org>  Sun, 20 May 2012 22:57:15 +0100
+
+hoichess (0.10.3-6) unstable; urgency=low
+
+  * Standards Version update to 3.9.2
+  * Removed knights from the Recommends: field in control
+  * Switch to dpkg-source 3.0 (quilt) format. This requests newer
+    debhelper scripts. Added a dependency.
+  * Order matters with linking and ld-as-needed. Took the patch from
+    Matthias Klose <doko@ubuntu.com>. Thanks. (Closes: #641727)
+
+ -- Oliver Korff <ok@xynyx.de>  Thu, 13 Oct 2011 21:51:35 +0200
+
+hoichess (0.10.3-5) unstable; urgency=low
+
+  * Replaced the build dependency of libreadline5-dev to
+    libreadline-dev this (Closes: #553781)
+  * This software is discontinued by its author, I will maintain it
+    as long as I can. Added a note to the copyright file.
+
+ -- Oliver Korff <ok@xynyx.de>  Mon, 02 Nov 2009 16:47:53 +0100
+
+hoichess (0.10.3-4) unstable; urgency=low
+
+  * added include for iostream in debug_printconfig.h this fixes FTBFS
+    and (Closes: #542135) and (Closes: #542986)
+  * removed watchfile, homepage is not available anymore
+  * Standards Version update to 3.8.3
+
+ -- Oliver Korff <ok@xynyx.de>  Fri, 21 Aug 2009 21:03:55 +0200
+
+hoichess (0.10.3-3) unstable; urgency=low
+
+  * opening book recommendation removed, the book is
+    not in debian right now, it is too huge
+  * control file: Homepage removed, upstream is not active any more
+    I will support hoichess as long as I can, because hoxianxi the
+    chinese chess engine is unique in debian
+  * Standards Version to 3.8.1
+  * Set debhelper version to >=7.0.0
+  * Set compat level to 7
+  * Removed dh_clean -k from rules and added dh_prep
+
+ -- Oliver Korff <ok@xynyx.de>  Sat, 06 Jun 2009 14:21:03 +0200
+
+hoichess (0.10.3-2) unstable; urgency=low
+
+  * Set default path to find future opening books
+  * The book file will be provided in the package hoichess-book
+  * Package now recommends the opening book
+
+ -- Oliver Korff <ok@xynyx.de>  Thu, 21 Feb 2008 13:00:05 +0100
+
+hoichess (0.10.3-1) unstable; urgency=low
+
+  * New Upstream version
+  * Fixes gcc-4.3 missing includes (Closes: #455143)
+
+ -- Oliver Korff <ok@xynyx.de>  Tue, 08 Jan 2008 15:32:37 +0100
+
+hoichess (0.10.2-1) unstable; urgency=low
+
+  * New Upstream Release
+  * Added perl build dependency
+
+ -- Oliver Korff <ok@xynyx.de>  Fri, 09 Nov 2007 17:22:01 +0100
+
+hoichess (0.9.0-1) unstable; urgency=low
+
+  * New upstream version 0.9.0
+  * Upstream Author added gcc-4.3 includes Closes: #417225
+  * removed checklib dependency libm.so.6
+
+ -- Oliver Korff <ok@xynyx.de>  Thu, 21 Jun 2007 13:35:24 +0200
+
+hoichess (0.8.0-1) unstable; urgency=low
+
+  * New upstream version 0.8.0
+  * New binary hoixiangqi ("Chinese chess") playing program
+  * Added more info regarding opening book to README.Debian
+
+ -- Oliver Korff <ok@xynyx.de>  Sat, 16 Dec 2006 14:32:40 +0100
+
+hoichess (0.5.1-1) unstable; urgency=low
+
+  * New upstream version 0.5.1 Closes: #379233
+
+ -- Oliver Korff <ok@xynyx.de>  Thu,  3 Aug 2006 01:25:04 +0200
+
+hoichess (0.4.3-2) unstable; urgency=low
+
+  * altered compile options, MAKE += CXX=g++ CXXFLAGS="$(CFLAGS)"
+  * The fix will be valid for upcoming versions Closes: #364656
+
+ -- Oliver Korff <ok@xynyx.de>  Sun, 25 Jun 2006 10:26:50 +0200
+
+
+hoichess (0.4.3-1) unstable; urgency=low
+
+  * New Upstream Version
+  * Added readline support, for the commandline interface
+
+ -- Oliver Korff <ok@xynyx.de>  Tue, 20 Jun 2006 20:53:07 +0200
+
+hoichess (0.4.1-1) unstable; urgency=low
+
+  * New Upstream Version
+  * altered compile options, no march=i686 anymore Closes: #364656
+
+ -- Oliver Korff <ok@xynyx.de>  Tue,  2 May 2006 10:23:13 +0200
+
+hoichess (0.4.0-1) unstable; urgency=low
+
+  * Initial release Closes: #334927
+
+ -- Oliver Korff <ok@xynyx.de>  Sun, 19 Mar 2006 20:41:15 +0100

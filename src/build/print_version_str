@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ -n "$1" ]; then
+	basedir="$1"
+else
+	mydir=`dirname "$0"`
+	basedir="$mydir"/..
+fi
+
+svn info "$basedir" >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+	# determine branch name
+	path=`svn info "$basedir" | awk '/^URL:/ {print $2}'`
+	branch=`basename "$path"`
+
+	# determine revision (replace ':' because this breaks makefile syntax)
+	rev=`svnversion "$basedir" | sed -e 's/:/_/g'`
+
+	version_str="$branch-$rev-svn"
+else
+	version_str=`awk '/^Version/ {print $2; exit}' "$basedir/ChangeLog"`
+fi
+
+echo "$version_str"

@@ -1,0 +1,143 @@
+=head1 NAME
+
+hoichess - xboard compatible chess engine
+
+hoixiangqi - xiangqi engine
+
+
+=head1 SYNOPSIS
+
+B<hoichess> [options]
+
+B<hoixiangqi> [options]
+
+
+=head1 DESCRIPTION
+
+B<hoichess> is a chess playing program. It implements major parts of the
+xboard/winboard chess engine protocol.
+
+B<hoichess> uses many of the standard techniques found in modern chess programs,
+like rotated bitboards, principal variation search, quiescence search,
+transposition table and iterative deepening.
+
+See xboard(6) for instructions about how to use B<hoichess> through xboard. To
+start up quickly, you just need the command: B<xboard -fcp hoichess>.
+
+B<hoixiangqi> is a xiangqi ("Chinese chess") playing program. Recent versions
+of xboard also support xiangqi: B<xboard -fcp hoixiangqi>.
+
+B<hoichess> and B<hoixiangqi> are built from the same code base, so nearly
+all commands and options, as well as the text based user interface, are the
+same for both programs.
+
+If run B<hoichess> or B<hoixiangqi> at the command line, the B<help> command
+gives you a brief summary of available commands.
+
+At program start, a default startup file is read. This file is called
+I<hoichess.rc> or I<hoixiangqi.rc>, respectively. It is searched for in the
+following directories, in order: current directory, I<$HOME/.hoichess>,
+I<$USERPROFILE/.hoichess> (only on Windows), I<DATADIR>.
+Only the first found file is read.
+The I<DATADIR> is installation dependent, commonly I</usr/share/games/hoichess>.
+
+=head1 OPTIONS
+
+=over 8
+
+=item B<-h>, B<--help>
+
+Display usage information.
+
+=item B<-V>, B<--version>
+
+Display version information.
+
+=item B<-v>, B<--verbose[=n]>
+
+Increase verbosity. Multiple B<-v> options may be given. B<--verbose=>I<n> sets
+verbosity level I<n>.
+
+=item B<-d>, B<--debug[=n]>
+
+Increase debug level. Multiple B<-d> options may be given. B<--debug=>I<n> sets
+debug level I<n>.
+
+=item B<-x>, B<--xboard>[=I<arg>]
+
+Start in xboard compatible mode. This turns off the input prompt and alters
+the output format to meet the requirements of the xboard protocol. Normally,
+this option should not be necessary because B<hoichess> automatically detects
+when it is started under xboard.
+
+The optional argument can be one of:
+
+=over 4
+
+=item B<off>
+
+Force non-xboard mode.
+
+=item B<on>
+
+Force xboard mode.
+
+=back
+
+
+=item B<--source> I<filename>
+
+Before accepting input from stdin, first read commands (and probably moves)
+from I<filename>. Can be given multiple times.
+
+=item B<--initcmd> I<command>
+
+Execute I<command> at startup. The command is executed before reading script
+files given by the B<--source> option. Can be given multiple times.
+
+=item B<--norc>
+
+Do not read default startup file I<hoichess.rc> or I<hoixiangqi.rc>.
+
+=item B<--color> I<arg>
+
+Control usage of ANSI color control sequences, e.g. when displaying the
+chess board.
+
+I<arg> can be one of:
+
+=over 4
+
+=item B<off>
+
+Never use ANSI color sequences.
+
+=item B<on>
+
+Always use ANSI color sequences.
+
+=item B<auto>
+
+Automatically use ANSI color sequences when stdout is a terminal.
+
+=back
+
+On Unix platforms, the default is B<auto>. On Windows platforms, the default
+is B<off>, because the Windows terminal is normally not ANSI capable.
+
+
+=back
+
+
+=head1 SEE ALSO
+
+http://www.hoicher.de/hoichess
+
+xboard(6)
+
+
+=head1 AUTHOR
+
+B<hoichess> was written by Holger Ruckdeschel <holger@hoicher.de>.
+
+This manual page was generated with pod2man(1).

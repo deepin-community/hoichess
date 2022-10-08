@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+
+name=`basename "$0"`
+if [ "$name" = "builddir-wrapper" ]; then
+	# called as "builddir-wrapper progname args"
+	name="$1"
+	shift
+	dir=`dirname "$0"`
+else
+	# called via symlink to builddir-wrapper
+	me=`readlink -f "$0"`
+	dir=`dirname "$me"`
+fi
+
+arch=`gcc -dumpmachine`
+
+exec "$dir"/../build/"$arch"/"$name" "$@"

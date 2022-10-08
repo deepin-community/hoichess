@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+
+-include /usr/share/dpkg/buildtools.mk
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cp /usr/share/pgn-extract/eco.pgn ./book/hoichess-book.pgn
+	dh_auto_build
+
+override_dh_auto_install:
+	dh_auto_install -- 'CXX=$(CXX)'
+
+override_dh_link:
+	dh_link usr/share/man/man6/hoichess.6.gz usr/share/man/man6/hoixiangqi.6.gz

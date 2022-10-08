@@ -1,0 +1,15 @@
+Description: Let DH ship changelog and license files and drop html manual
+Author: Samuel Henrique <samueloph@debian.org>
+Index: hoichess/Makefile
+===================================================================
+--- hoichess.orig/Makefile
++++ hoichess/Makefile
+@@ -55,7 +55,7 @@ hoichess.rc hoixiangqi.rc: %: %.m4
+ .PHONY: install
+ install: install-bin
+ 
+-INSTALL_BIN_DOCS = AUTHORS BUGS ChangeLog LICENSE README hoichess.6.html
++INSTALL_BIN_DOCS = AUTHORS BUGS README
+ INSTALL_BIN_DATA = hoichess.rc hoixiangqi.rc
+ 
+ .PHONY: install-bin 

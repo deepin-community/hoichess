@@ -1,0 +1,19 @@
+#!/bin/sh
+
+file="book_1.02.pgn.gz"
+url="http://ftp.gnu.org/pub/gnu/chess/$file"
+md5sum="e382f5774f050efc79a08baa083eba79"
+
+outfile="hoichess-book.pgn"
+
+wget "$url" -O "$file".tmp
+echo "$md5sum  $file.tmp" | md5sum -c || exit
+mv "$file".tmp "$file"
+
+if [ -e "$outfile" ]; then
+	echo "Error: $outfile already exists, won't overwrite" >&2
+	exit 1
+fi
+
+gzip -dc < "$file" > "$outfile"
+echo "Created $outfile"
